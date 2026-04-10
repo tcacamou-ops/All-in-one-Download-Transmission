@@ -1,0 +1,18 @@
+{
+    "autoload": {
+        "psr-4": {
+            "AllI1D\\Transmission\\": "includes/"
+        }
+    },
+    "require-dev": {
+        "roots/wordpress": "@stable"
+    },
+    "config": {
+        "allow-plugins": {
+            "roots/wordpress-core-installer": true
+        }
+    },
+    "require": {
+        "honemo/wp-github-updater": "^1.0"
+    }
+}
