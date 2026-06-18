@@ -34,6 +34,7 @@ class ComposerStaticInit4acf41c3ac7373a01f33652d5666bc14
         'AllI1D\\Transmission\\Api\\CredentialsApi' => __DIR__ . '/../..' . '/includes/Api/CredentialsApi.php',
         'AllI1D\\Transmission\\Components\\Credentials' => __DIR__ . '/../..' . '/includes/Components/Credentials.php',
         'AllI1D\\Transmission\\Filters\\Download' => __DIR__ . '/../..' . '/includes/Filters/Download.php',
+        'AllI1D\\Transmission\\Filters\\Status' => __DIR__ . '/../..' . '/includes/Filters/Status.php',
         'AllI1D\\Transmission\\Models\\TransmissionClient' => __DIR__ . '/../..' . '/includes/Models/TransmissionClient.php',
         'AllI1D\\Transmission\\Pages\\Settings' => __DIR__ . '/../..' . '/includes/Pages/Settings.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',

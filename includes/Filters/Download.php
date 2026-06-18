@@ -19,6 +19,7 @@ class Download {
         }
         catch (\Exception $e) {
             $item['downloaded'] = false;
+            error_log('[AllI1D Transmission] Error processing torrent: ' . $e->getMessage());
             return $item;
         }
         return $item;

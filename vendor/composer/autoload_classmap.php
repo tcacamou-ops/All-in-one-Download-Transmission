@@ -11,6 +11,7 @@ return array(
     'AllI1D\\Transmission\\Api\\CredentialsApi' => $baseDir . '/includes/Api/CredentialsApi.php',
     'AllI1D\\Transmission\\Components\\Credentials' => $baseDir . '/includes/Components/Credentials.php',
     'AllI1D\\Transmission\\Filters\\Download' => $baseDir . '/includes/Filters/Download.php',
+    'AllI1D\\Transmission\\Filters\\Status' => $baseDir . '/includes/Filters/Status.php',
     'AllI1D\\Transmission\\Models\\TransmissionClient' => $baseDir . '/includes/Models/TransmissionClient.php',
     'AllI1D\\Transmission\\Pages\\Settings' => $baseDir . '/includes/Pages/Settings.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',

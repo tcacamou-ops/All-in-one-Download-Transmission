@@ -3,7 +3,7 @@
  * Plugin Name: All-in-one Download Transmission
  * Plugin URI: https://github.com/tcacamou-ops/All-in-one-Download-Transmission
  * Description: Add-on for All-in-one Download that allows you to send torrents to a Transmission client.
- * Version: 0.0.3
+ * Version: 0.0.4
  * Author: tcacamou
  * Author URI: https://github.com/tcacamou-ops
  * Text Domain: all-in-one-download-transmission
@@ -15,6 +15,7 @@
 namespace AllI1D\Transmission;
 
 use AllI1D\Transmission\Filters\Download;
+use AllI1D\Transmission\Filters\Status;
 use honemo\updater\Updater;
 
 // Security: prevent direct file access.
@@ -58,6 +59,7 @@ class Plugin {
 
     private function initialize_filters() {
         add_filter( 'alli1d_process_torrent', [Download::class,'process_torrent']);
+        add_filter( 'alli1d_process_status', [Status::class,'process_status']);
     }
 }
 
