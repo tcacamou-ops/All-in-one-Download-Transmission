@@ -6,10 +6,47 @@ class TransmissionClient {
     private $username;
     private $password;
 
-    public function __construct($url, $username, $password) {
-        $this->url = $url;
+    public function __construct( string $url, string $username, string $password ) {
+        $this->url      = self::validate_url( $url );
         $this->username = $username;
         $this->password = $password;
+    }
+
+    private static function validate_url( string $url ): string {
+        $parsed = wp_parse_url( $url );
+
+        if ( ! isset( $parsed['scheme'] ) || ! in_array( $parsed['scheme'], [ 'http', 'https' ], true ) ) {
+            throw new \InvalidArgumentException(
+                'Transmission URL must use http or https scheme.'
+            );
+        }
+
+        $host = $parsed['host'] ?? '';
+
+        if ( 'transmission' === $host ) {
+            return $url;
+        }
+
+        if ( filter_var( $host, FILTER_VALIDATE_IP ) ) {
+            $blocked_ranges = [
+                '/^127\./',
+                '/^10\./',
+                '/^192\.168\./',
+                '/^172\.(1[6-9]|2\d|3[01])\./',
+                '/^169\.254\./',
+                '/^::1$/',
+                '/^fc00:/i',
+            ];
+            foreach ( $blocked_ranges as $pattern ) {
+                if ( preg_match( $pattern, $host ) ) {
+                    throw new \InvalidArgumentException(
+                        'Transmission URL must not point to an internal IP address.'
+                    );
+                }
+            }
+        }
+
+        return $url;
     }
 
     private function request(array $payload, string $sessionId = '', int $retryCount = 0): array {

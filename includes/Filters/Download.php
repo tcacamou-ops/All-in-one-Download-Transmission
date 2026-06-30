@@ -1,6 +1,7 @@
 <?php
 namespace AllI1D\Transmission\Filters;
 use AllI1D\Transmission\Models\TransmissionClient;
+use AllI1D\Helpers\Crypto;
 
 class Download {
 
@@ -12,7 +13,7 @@ class Download {
             $client = new TransmissionClient(
                 get_option('alli1d_transmission_url', ''),
                 get_option('alli1d_transmission_login', ''),
-                get_option('alli1d_transmission_pwd', '')
+                Crypto::decrypt( get_option('alli1d_transmission_pwd', '') )
             );
             $retour = $client->addTorrent($item['path'], $item['dest_directory']);
             $item['downloaded'] = true;

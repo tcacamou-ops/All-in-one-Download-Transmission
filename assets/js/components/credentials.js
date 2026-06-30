@@ -14,10 +14,14 @@ jQuery(document).ready(function ($) {
             },
             function (response, data) {
                 allI1d.showToast('Saved', 'success');
+                setTimeout(function () { location.reload(); }, 1000);
             },
             'POST',
             function (request, error) {
-                allI1d.showToast('Error', 'error');
+                var message = (request.responseJSON && request.responseJSON.message)
+                    ? request.responseJSON.message
+                    : error;
+                allI1d.showToast(message, 'error');
                 console.error('Error saving transmission credentials:', error);
             }
         );

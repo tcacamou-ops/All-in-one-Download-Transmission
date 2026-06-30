@@ -1,6 +1,7 @@
 <?php
 namespace AllI1D\Transmission\Filters;
 use AllI1D\Transmission\Models\TransmissionClient;
+use AllI1D\Helpers\Crypto;
 
 class Status {
 
@@ -11,7 +12,7 @@ class Status {
         $retour = [];
         $url = get_option('alli1d_transmission_url', '');
         $login = get_option('alli1d_transmission_login', '');
-        $pwd = get_option('alli1d_transmission_pwd', '');
+        $pwd = Crypto::decrypt( get_option('alli1d_transmission_pwd', '') );
         // If any of the credentials are missing, return an error status.
         if (empty($url) || empty($login) || empty($pwd)) {
             $retour = ['error' => 'Transmission credentials not set'];

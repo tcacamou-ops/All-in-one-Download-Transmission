@@ -14,8 +14,10 @@
 
 namespace AllI1D\Transmission;
 
+use AllI1D\Transmission\Components\Credentials;
 use AllI1D\Transmission\Filters\Download;
 use AllI1D\Transmission\Filters\Status;
+use AllI1D\Helpers\Crypto;
 use honemo\updater\Updater;
 
 // Security: prevent direct file access.
@@ -58,8 +60,31 @@ class Plugin {
     }
 
     private function initialize_filters() {
-        add_filter( 'alli1d_process_torrent', [Download::class,'process_torrent']);
-        add_filter( 'alli1d_process_status', [Status::class,'process_status']);
+        add_filter( 'alli1d_process_torrent', [Download::class, 'process_torrent'] );
+        add_filter( 'alli1d_process_status', [Status::class, 'process_status'] );
+        add_filter( 'alli1d_provider_settings_modals', [$this, 'register_modal'] );
+        add_action( 'admin_init', [$this, 'migrate_credentials_encryption'] );
+    }
+
+    public function migrate_credentials_encryption(): void {
+        $migrated_key = 'alli1d_transmission_credentials_encrypted_v1';
+        if ( get_option( $migrated_key ) ) {
+            return;
+        }
+        $pwd = get_option( 'alli1d_transmission_pwd', '' );
+        if ( '' !== $pwd && 0 !== strpos( $pwd, 'enc:' ) ) {
+            update_option( 'alli1d_transmission_pwd', Crypto::encrypt( $pwd ) );
+        }
+        update_option( $migrated_key, true );
+    }
+
+    public function register_modal( array $modals ): array {
+        $credentials = new Credentials();
+        $modals['transmission'] = [
+            'title' => __( 'Transmission Settings', 'all-in-one-download-transmission' ),
+            'html'  => $credentials->get_html(),
+        ];
+        return $modals;
     }
 }
 
