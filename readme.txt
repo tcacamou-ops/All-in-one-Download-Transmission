@@ -4,7 +4,7 @@ Tags: download, torrent, transmission, all-in-one-download
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.2
-Stable tag: 0.0.4
+Stable tag: 0.0.5
 License: Proprietary
 
 Add-on for All-in-one Download that allows you to automatically send torrents to a Transmission client.
@@ -56,6 +56,13 @@ Any version of Transmission that exposes an RPC interface (2.x and 3.x are suppo
 Yes, as long as the RPC endpoint is accessible from your WordPress server.
 
 == Changelog ==
+= 0.0.5 =
+* Security: validate REST API args at registration level
+* Security: encrypt Transmission password at rest with AES-256-CBC
+* Security: block SSRF via Transmission URL validation
+* Security: various hardening fixes
+* Feat: expose credentials as modal on Status page
+
 = 0.0.4 =
 * Feat Add the status feature
 
