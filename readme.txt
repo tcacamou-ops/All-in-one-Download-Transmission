@@ -4,7 +4,7 @@ Tags: download, torrent, transmission, all-in-one-download
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.2
-Stable tag: 0.0.6
+Stable tag: 0.0.7
 License: Proprietary
 
 Add-on for All-in-one Download that allows you to automatically send torrents to a Transmission client.
