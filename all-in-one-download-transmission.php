@@ -3,7 +3,7 @@
  * Plugin Name: All-in-one Download Transmission
  * Plugin URI: https://github.com/tcacamou-ops/All-in-one-Download-Transmission
  * Description: Add-on for All-in-one Download that allows you to send torrents to a Transmission client.
- * Version: 0.0.10
+ * Version: 0.0.11
  * Author: tcacamou
  * Author URI: https://github.com/tcacamou-ops
  * Text Domain: all-in-one-download-transmission
